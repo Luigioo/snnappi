@@ -56,6 +56,7 @@ public class App extends Application {
         System.out.println(i);
 //        root.getChildren().add(cb.r);
 //        root.getChildren().add(c.r);
+        AlbertooApp a = new AlbertooApp();
 
         new AnimationTimer(){
 
@@ -76,6 +77,7 @@ public class App extends Application {
 //                gc.fillRect(x-10,y-10,x+10,y+10);
 
                 c.render(gc);
+                a.update();
 
 
             }
