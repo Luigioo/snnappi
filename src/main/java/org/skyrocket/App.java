@@ -56,14 +56,14 @@ public class App extends Application {
         System.out.println(i);
 //        root.getChildren().add(cb.r);
 //        root.getChildren().add(c.r);
-        AlbertooApp a = new AlbertooApp(gc);
+        AlbertooApp a = new AlbertooApp(gc, root);
 
         new AnimationTimer(){
 
             @Override
             public void handle(long l) {
                 //set background
-                gc.setFill( Color.WHITE );
+                gc.setFill( Color.BLACK );
                 gc.fillRect(0,0,1280,720);
 
                 //get relative time

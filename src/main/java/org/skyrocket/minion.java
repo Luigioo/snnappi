@@ -1,6 +1,9 @@
 package org.skyrocket;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
 public abstract class minion{
 
@@ -17,10 +20,23 @@ public abstract class minion{
     protected int MaxHealth;
 
     public GraphicsContext gc;
+    public Rectangle rectangle = new Rectangle();
+    private Image i = new Image("src/main/resources/daoyan.jpg");
 
     public minion(GraphicsContext gc)
     {
         this.gc = gc;
+
+        //Setting the properties of the rectangle
+        rectangle.setX(150);
+        rectangle.setY(75);
+        rectangle.setWidth(100);
+        rectangle.setHeight(150);
+
+        //Setting the height and width of the arc
+        rectangle.setArcWidth(30);
+        rectangle.setArcHeight(20);
+        rectangle.setFill(new ImagePattern(i));
     }
 
     public abstract void init();
