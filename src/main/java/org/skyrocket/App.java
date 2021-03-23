@@ -56,7 +56,7 @@ public class App extends Application {
         System.out.println(i);
 //        root.getChildren().add(cb.r);
 //        root.getChildren().add(c.r);
-        AlbertooApp a = new AlbertooApp();
+        AlbertooApp a = new AlbertooApp(gc);
 
         new AnimationTimer(){
 
@@ -83,6 +83,7 @@ public class App extends Application {
             }
         }.start();
 
+        a.init();
         stage.show();
     }
 
