@@ -2,19 +2,13 @@ package org.skyrocket;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-
-import java.awt.*;
+import org.skyrocket.layer.LayerManager;
 
 
 /**
@@ -43,17 +37,27 @@ public class App extends Application {
 //                    System.out.println("x: "+e.getX()+" y: "+e.getY());
 //                    System.out.println();
 //                });
+        LayerManager.init(root, canvas);
         Card c = new Card();
-        root.getChildren().add(c.r);
+        LayerManager.add(c.r);
         Card cb = new Card();
-        root.getChildren().add(cb.r);
+        LayerManager.add(cb.r);
         cb.r.setFill(Color.PINK);
         cb.setXpos(20);
-        int i = 0;
-        for(Object o:root.getChildren()){
-            i++;
-        }
-        System.out.println(i);
+        cb.r.layer = -1;
+        LayerManager.reOrder();
+//        root.getChildren().sort((node1, node2)->{
+//            if(node1 instanceof Layered && node2 instanceof Layered){
+//                Layered l1 = (Layered)node1, l2 = (Layered)node2;
+//                return l1.getLayer()>l2.getLayer()?-1:1;
+//            }else if(node2 instanceof Layered){
+//                //only true when node1 is canvas
+//                //canvas is below all
+//                return 1;
+//            }else{
+//                return -1;
+//            }
+//        });
 //        root.getChildren().add(cb.r);
 //        root.getChildren().add(c.r);
         AlbertooApp a = new AlbertooApp(gc);
