@@ -4,8 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class friendMinion extends minion{
 
-    public friendMinion(GraphicsContext gc) {
-        super(gc);
+    public friendMinion(GraphicsContext gc, int index) {
+        super(gc, index);
     }
 
     @Override

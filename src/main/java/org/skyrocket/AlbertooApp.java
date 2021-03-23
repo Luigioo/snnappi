@@ -22,8 +22,8 @@ public class AlbertooApp extends App{
 
     public void init()//this will only be called once
     {
-        friendMinion m1 = new friendMinion(gc);
-        friendMinion m2 = new friendMinion(gc);
+        friendMinion m1 = new friendMinion(gc, 1);
+        friendMinion m2 = new friendMinion(gc, 2);
         root.getChildren().add(m1.rectangle);
         root.getChildren().add(m2.rectangle);
 //        for(int i = 0; i < minion.getNumber(); i++)

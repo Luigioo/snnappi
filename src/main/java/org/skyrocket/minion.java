@@ -21,9 +21,9 @@ public abstract class minion{
 
     public GraphicsContext gc;
     public Rectangle rectangle = new Rectangle();
-    private Image i = new Image("src/main/resources/daoyan.jpg");
+    private Image i = new Image("daoyan.jpg");
 
-    public minion(GraphicsContext gc)
+    public minion(GraphicsContext gc, int index)
     {
         this.gc = gc;
 
