@@ -38,30 +38,45 @@ public class App extends Application {
 
         final long startTime = System.nanoTime();
 
-        scene.setOnMouseClicked(
-                e -> {
-                    System.out.println("x: "+e.getX()+" y: "+e.getY());
-                    System.out.println();
-                });
-        Circle c = new Circle(500, 500, 32);
+//        scene.setOnMouseClicked(
+//                e -> {
+//                    System.out.println("x: "+e.getX()+" y: "+e.getY());
+//                    System.out.println();
+//                });
+        Card c = new Card();
+        root.getChildren().add(c.r);
+        Card cb = new Card();
+        root.getChildren().add(cb.r);
+        cb.r.setFill(Color.PINK);
+        cb.setXpos(20);
+        int i = 0;
+        for(Object o:root.getChildren()){
+            i++;
+        }
+        System.out.println(i);
+//        root.getChildren().add(cb.r);
+//        root.getChildren().add(c.r);
 
         new AnimationTimer(){
 
             @Override
             public void handle(long l) {
                 //set background
-                gc.setFill( new Color(0.85, 0.85, 1.0, 1.0) );
+                gc.setFill( Color.WHITE );
                 gc.fillRect(0,0,1280,720);
 
                 //get relative time
                 double t = (l-startTime)/1000000000.0;
+//
+//                double x = 232 + 128 * Math.cos(t);
+//                double y = 232 + 128 * Math.sin(t);
+//
+//                gc.setFill(Color.BLACK);
+//
+//                gc.fillRect(x-10,y-10,x+10,y+10);
 
-                double x = 232 + 128 * Math.cos(t);
-                double y = 232 + 128 * Math.sin(t);
+                c.render(gc);
 
-                gc.setFill(Color.BLACK);
-
-                gc.fillRect(x-10,y-10,x+10,y+10);
 
             }
         }.start();
