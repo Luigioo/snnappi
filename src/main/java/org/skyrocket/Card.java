@@ -2,49 +2,79 @@ package org.skyrocket;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
 import org.skyrocket.layer.Srect;
 
 public class Card extends Sprite {
 
-    Rectangle2D mesh;
-    Srect r;
+    final double width = 91;
+    final double height = 175;
+    public Srect r = new Srect(0,0,width,height);;
 
-    double xpos = 0;
-    double ypos = 0;
+    double selectPointX = -1;
+    double selectPointY = -1;
 
-    double width = 91;
-    double height = 175;
-
-    public Card(){
-        mesh = new Rectangle2D(0,0,91,175);
-        r = new Srect(0,0,width,height);
-        r.setFill(Color.BLUE);
-
-        r.addEventFilter(MouseEvent.MOUSE_CLICKED,
-                e->{
-                    System.out.println("aaahhahaha");
-                    setXpos(xpos+10);
-                    r.layer = -r.layer;
-                    LayerManager.reOrder();
-                });
+    public Card(Color c){
+        r.setFill(c);
+//
+        r.addEventFilter(MouseEvent.MOUSE_PRESSED,e->{
+            selectPointX = e.getX()-r.getX();
+            selectPointY = e.getY()-r.getY();
+            HandManager.selected = this;
+        });
+//        r.setOnDragDetected(e->{
+//            System.out.println("drag dec");
+//            Dragboard db = r.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+//            ClipboardContent content = new ClipboardContent();
+//            content.putString("something");
+//            db.setContent(content);
+//            e.consume();
+//        });
+//        r.setOnDragDone(e->{
+//            System.out.println("drag done");
+//            e.consume();
+//        });
+        r.addEventFilter(MouseEvent.MOUSE_DRAGGED,e->{
+//            System.out.println("aaahhahaha");
+            setPos(e.getX()-selectPointX, e.getY()-selectPointY);
+        });
+        r.addEventFilter(MouseEvent.MOUSE_RELEASED,e->{
+            if(HandManager.selected==this){
+                HandManager.arrangeCards();
+                HandManager.selected = null;
+            }
+        });
+    }
+    public Card(Image image){
+        r.setFill(new ImagePattern(image));
     }
 
-    public void render(GraphicsContext gc) {
+//    public void render(GraphicsContext gc) {
 //        gc.setFill(Color.BLACK);
 //        gc.fillRect(xpos, ypos, width, height);
-    }
+//    }
 
     public void update() {
         super.update();
     }
 
-    public void setXpos(double x){
-        xpos = x;
-        r.setX(x);
-        r.setRotate(r.getRotate()+1);
+    public void setPos(double x, double y){
+        setX(x);
+        setY(y);
+    }
 
+    public void setX(double x){
+        r.setX(x);
+    }
+    public void setY(double y){
+        r.setY(y);
     }
 }

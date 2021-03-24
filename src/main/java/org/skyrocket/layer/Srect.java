@@ -4,6 +4,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class Srect extends Rectangle implements Layered{
+
     public int layer = 0;
 
     public Srect() {

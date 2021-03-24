@@ -8,6 +8,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.skyrocket.board.BoardManager;
+import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
 
 
@@ -38,14 +40,21 @@ public class App extends Application {
 //                    System.out.println();
 //                });
         LayerManager.init(root, canvas);
-        Card c = new Card();
-        LayerManager.add(c.r);
-        Card cb = new Card();
-        LayerManager.add(cb.r);
-        cb.r.setFill(Color.PINK);
-        cb.setXpos(20);
-        cb.r.layer = -1;
+
+        HandManager.init();
+        HandManager.arrangeCards();
+
+        BoardManager.init();
+
         LayerManager.reOrder();
+//        Card c = new Card();
+//        LayerManager.add(c.r);
+//        Card cb = new Card();
+//        LayerManager.add(cb.r);
+//        cb.r.setFill(Color.PINK);
+//        cb.setXpos(20);
+//        cb.r.layer = -1;
+//        LayerManager.reOrder();
 //        root.getChildren().sort((node1, node2)->{
 //            if(node1 instanceof Layered && node2 instanceof Layered){
 //                Layered l1 = (Layered)node1, l2 = (Layered)node2;
@@ -67,7 +76,7 @@ public class App extends Application {
             @Override
             public void handle(long l) {
                 //set background
-                gc.setFill( Color.BLACK );
+                gc.setFill( Color.LIGHTGREY );
                 gc.fillRect(0,0,1280,720);
 
                 //get relative time
@@ -79,8 +88,6 @@ public class App extends Application {
 //                gc.setFill(Color.BLACK);
 //
 //                gc.fillRect(x-10,y-10,x+10,y+10);
-
-                c.render(gc);
                 a.update();
 
 

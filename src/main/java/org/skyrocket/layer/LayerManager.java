@@ -9,8 +9,6 @@ import java.util.List;
 
 public final class LayerManager {
 
-    public static LayerManager layerManager;
-
     static Group root;
     static Canvas canvas;
     static List<Layered> layers = new LinkedList<>();
@@ -27,10 +25,10 @@ public final class LayerManager {
             if(l1.getLayer()==l2.getLayer()){
                 return 0;
             }else{
-                return l1.getLayer()>l2.getLayer() ? -1 : 1;
+                return l1.getLayer()>l2.getLayer() ? 1 : -1;
             }
         });
-        canvas.toFront();
+        //canvas.toFront();
         for(Layered l:layers){
             ((Node) l).toFront();
         }
