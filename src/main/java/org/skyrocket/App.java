@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import org.skyrocket.board.BoardManager;
 import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
+import org.skyrocket.mouse.Input;
 
 
 /**
@@ -82,6 +83,7 @@ public class App extends Application {
                 //get relative time
                 double t = (l-startTime)/1000000000.0;
 //
+                Input.update();
 //                double x = 232 + 128 * Math.cos(t);
 //                double y = 232 + 128 * Math.sin(t);
 //

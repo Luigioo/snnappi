@@ -3,6 +3,7 @@ package org.skyrocket.board;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import org.skyrocket.layer.LayerManager;
+import org.skyrocket.mouse.Input;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,9 +22,10 @@ public final class BoardManager {
         for(Block b:blocks){
             b.e.setStroke(Color.BLACK);
             b.e.setStrokeWidth(2);
-            b.e.setFill(Color.WHITE);
+            b.e.setFill(Color.TRANSPARENT);
             b.e.layer = -1;
             LayerManager.add(b.e);
+            Input.add(b.e);
         }
     }
 

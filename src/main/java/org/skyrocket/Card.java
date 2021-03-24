@@ -12,6 +12,7 @@ import javafx.scene.paint.ImagePattern;
 import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
 import org.skyrocket.layer.Srect;
+import org.skyrocket.mouse.Input;
 
 public class Card extends Sprite {
 
@@ -44,6 +45,7 @@ public class Card extends Sprite {
 //        });
         r.addEventFilter(MouseEvent.MOUSE_DRAGGED,e->{
 //            System.out.println("aaahhahaha");
+            Input.setpos(e.getX(), e.getY());
             setPos(e.getX()-selectPointX, e.getY()-selectPointY);
         });
         r.addEventFilter(MouseEvent.MOUSE_RELEASED,e->{
