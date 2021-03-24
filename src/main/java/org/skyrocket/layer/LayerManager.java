@@ -39,6 +39,11 @@ public final class LayerManager {
         layers.add(l);
     }
 
+    public static void remove(Layered l){
+        root.getChildren().remove((Node)l);
+        layers.remove(l);
+    }
+
 
 
 

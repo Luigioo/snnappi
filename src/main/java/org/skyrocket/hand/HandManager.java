@@ -47,4 +47,10 @@ public final class HandManager {
     public static void add(Card c){
         cards.add(c);
     }
+
+    public static void consumeCard(Card c) {
+        cards.remove(c);
+        LayerManager.remove(c.r);
+        arrangeCards();
+    }
 }

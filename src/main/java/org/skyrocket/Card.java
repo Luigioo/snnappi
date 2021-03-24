@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import org.skyrocket.board.BoardManager;
 import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
 import org.skyrocket.layer.Srect;
@@ -52,6 +53,7 @@ public class Card extends Sprite {
             if(HandManager.selected==this){
                 HandManager.arrangeCards();
                 HandManager.selected = null;
+                BoardManager.releaseCard(this);
             }
         });
     }

@@ -2,6 +2,8 @@ package org.skyrocket.board;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
+import org.skyrocket.Card;
+import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
 import org.skyrocket.mouse.Input;
 
@@ -11,6 +13,7 @@ import java.util.List;
 public final class BoardManager {
 
     static List<Block> blocks = new LinkedList<>();
+    static Block selectedBlock = null;
 
     public static void init(){
         blocks.add(new Block(147,196,48,86));
@@ -26,6 +29,13 @@ public final class BoardManager {
             b.e.layer = -1;
             LayerManager.add(b.e);
             Input.add(b.e);
+        }
+    }
+
+    public static void releaseCard(Card c){
+        if(selectedBlock!=null){
+            selectedBlock.place(c);
+            HandManager.consumeCard(c);
         }
     }
 
