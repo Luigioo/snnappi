@@ -8,7 +8,6 @@ import org.skyrocket.Card;
 
 public class RenderManager {
 
-    private Card c;
     private Image i;
     private GraphicsContext gc;
     private Renderable r;
@@ -27,14 +26,12 @@ public class RenderManager {
 
     private void rotate(GraphicsContext gc, double angle, double px, double py) {
         System.out.println("Px is: " + px + " Py is: " + py);
-        Rotate r = new Rotate(angle, px, py);
-        gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+        Rotate rtt = new Rotate(angle, px, py);
+        gc.setTransform(r.getHeight()/i.getHeight(), rtt.getMyx(), rtt.getMxy(), r.getHeight()/i.getHeight(), rtt.getTx(), rtt.getTy());
     }
 
     private void drawRotatedImage(GraphicsContext gc, Image image, double angle, double tlpx, double tlpy) {
         gc.save(); // saves the current state on stack, including the current transform
-        gc.clearRect(0,0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-        gc.scale( r.getHeight()/i.getHeight(), r.getHeight()/i.getHeight());
         rotate(gc, angle, tlpx + image.getWidth() / 2, tlpy + image.getHeight() / 2);
         gc.drawImage(image, tlpx, tlpy);
         gc.restore(); // back to original state (before rotation)
