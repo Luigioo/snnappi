@@ -3,6 +3,7 @@ package org.skyrocket.render;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.transform.Rotate;
 import org.skyrocket.Card;
 
 public class RenderManager {
@@ -10,51 +11,32 @@ public class RenderManager {
     private Card c;
     private Image i;
     private GraphicsContext gc;
-    private Renderable renderable;
+    private Renderable r;
 
-    public RenderManager(GraphicsContext gc)
+    public RenderManager(GraphicsContext gc, Renderable r)
     {
         this.gc = gc;
-        i = new Image("kuang.png");
-        renderable = new Renderable() {
-            @Override
-            public double getX() {
-                return 400;
-            }
-
-            @Override
-            public double getY() {
-                return 400;
-            }
-
-            @Override
-            public double getAngle() {
-                return 0;
-            }
-
-            @Override
-            public double getWidth() {
-                return 100;
-            }
-
-            @Override
-            public double getHeight() {
-                return 200;
-            }
-        };
-        render(renderable);
+        this.r = r;
+        i = new Image("kuangg.png");
     }
 
-
-    public ImageView render(Renderable r)
+    public void render()
     {
-        ImageView iv = new ImageView(i);
-        iv.setX(r.getX() - 10);
-        iv.setY(r.getY() - 10);
-        iv.setFitWidth(r.getWidth() + 40);
-        iv.setFitHeight(r.getHeight() + 40);
-        iv.setRotate(r.getAngle());
-        gc.drawImage(iv.getImage(), iv.getX(), iv.getY());
-        return iv;
+        drawRotatedImage(gc, i, r.getAngle(), r.getX(), r.getY());
+    }
+
+    private void rotate(GraphicsContext gc, double angle, double px, double py) {
+        System.out.println("Px is: " + px + " Py is: " + py);
+        Rotate r = new Rotate(angle, px, py);
+        gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+    }
+
+    private void drawRotatedImage(GraphicsContext gc, Image image, double angle, double tlpx, double tlpy) {
+        gc.save(); // saves the current state on stack, including the current transform
+        gc.clearRect(0,0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+        gc.scale( r.getHeight()/i.getHeight(), r.getHeight()/i.getHeight());
+        rotate(gc, angle, tlpx + image.getWidth() / 2, tlpy + image.getHeight() / 2);
+        gc.drawImage(image, tlpx, tlpy);
+        gc.restore(); // back to original state (before rotation)
     }
 }
