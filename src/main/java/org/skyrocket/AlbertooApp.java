@@ -27,15 +27,9 @@ public class AlbertooApp extends App{
         friendMinion m1 = new friendMinion(gc, 1);
         friendMinion m2 = new friendMinion(gc, 2);
 
-        Card c = new Card(Color.BLUEVIOLET);
-        c.render(gc);
-        c.setX(500);
-        c.setY(500);
-
-        renderManager rM = new renderManager(gc, c);
+        renderManager rM = new renderManager(gc);
         root.getChildren().add(m1.rectangle);
         root.getChildren().add(m2.rectangle);
-        root.getChildren().add(rM.render(90));
 //        for(int i = 0; i < minion.getNumber(); i++)
 //        {
 //            FMINION.add(new )

@@ -14,7 +14,7 @@ import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
 import org.skyrocket.layer.Srect;
 import org.skyrocket.mouse.Input;
-import org.skyrocket.render.renderManager;
+import org.skyrocket.render.renderable;
 
 public class Card extends Sprite {
 
@@ -81,11 +81,6 @@ public class Card extends Sprite {
     }
     public void setY(double y){
         r.setY(y);
-    }
-
-    public Srect getRect()
-    {
-        return r;
     }
 
 }
