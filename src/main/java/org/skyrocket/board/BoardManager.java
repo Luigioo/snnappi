@@ -7,13 +7,17 @@ import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
 import org.skyrocket.mouse.Input;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public final class BoardManager {
 
-    static List<Block> blocks = new LinkedList<>();
+    static List<Block> blocks = new ArrayList<>();
+    static List<EnemyBlock> enemyBlocks = new ArrayList<>();
     static Block selectedBlock = null;
+    static Block moveBlock = null;
+    static EnemyBlock targetBlock = null;
 
     public static void init(){
         blocks.add(new Block(147,196,48,86));
@@ -30,6 +34,21 @@ public final class BoardManager {
             LayerManager.add(b.e);
             Input.add(b.e);
         }
+        enemyBlocks.add(new EnemyBlock(747,196,48,86));
+        enemyBlocks.add(new EnemyBlock(747,408,48,86));
+        enemyBlocks.add(new EnemyBlock(895,196,48,86));
+        enemyBlocks.add(new EnemyBlock(895,408,48,86));
+        enemyBlocks.add(new EnemyBlock(1043,196,48,86));
+        enemyBlocks.add(new EnemyBlock(1043,408,48,86));
+        for(EnemyBlock e:enemyBlocks){
+            e.e.setStroke(Color.RED);
+            e.e.setStrokeWidth(2);
+            e.e.setFill(Color.TRANSPARENT);
+            e.e.layer = -1;
+            LayerManager.add(e.e);
+            Input.add(e.e);
+        }
+
     }
 
     public static void releaseCard(Card c){
@@ -37,6 +56,11 @@ public final class BoardManager {
             selectedBlock.place(c);
             HandManager.consumeCard(c);
         }
+    }
+
+
+    public static void attack(Block attacker, EnemyBlock enemy){
+        System.out.println("fight!");
     }
 
 

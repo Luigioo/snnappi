@@ -6,26 +6,22 @@ import javafx.scene.shape.Ellipse;
 import org.skyrocket.Card;
 import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.Selli;
+import org.skyrocket.mouse.Input;
 
 
 public class Block{
     Selli e;
 
-    boolean preview = false;
+    boolean preview = false; //when dragging a card over
+    boolean placed = false; //when a card is successfully dropped
+
     Color previewColor = Color.LIGHTPINK;
-    boolean placed = false;
 
     public Block(double centerX, double centerY, double radiusX, double radiusY){
         e = new Selli(centerX,centerY,radiusX,radiusY);
 
-//        e.addEventFilter(MouseEvent.MOUSE_ENTERED, event->{
-//            System.out.println("enter");
-//            if(HandManager.selected!=null){
-//                e.setFill(HandManager.selected.r.getFill());
-//            }
-//        });
         e.mouseEnter=()->{
-            System.out.println("ola");
+//            System.out.println("ola");
             if(HandManager.selected!=null&&!placed){
                 e.setFill(previewColor);
                 preview = true;
@@ -33,22 +29,38 @@ public class Block{
             }
         };
         e.mouseExit=()->{
-            System.out.println("yoha");
+//            System.out.println("yoha");
             if(preview){
                 e.setFill(Color.TRANSPARENT);
                 preview = false;
                 BoardManager.selectedBlock = null;
             }
         };
-//        e.addEventFilter(MouseEvent.ANY,e->{
-//            System.out.println("oola");
-//        });
-//        e.setOnDragOver(e->{
-//            System.out.println("ola");
-//        });
-//        e.setOnDragDropped(event->{
-//            System.out.println("dropped");
-//        });
+        e.addEventFilter(MouseEvent.MOUSE_PRESSED, event->{
+            System.out.println("pressed");
+            if(placed){
+                BoardManager.moveBlock = this;
+
+            }
+
+        });
+        e.addEventFilter(MouseEvent.MOUSE_DRAGGED, event -> {
+            Input.setpos(event.getX(), event.getY());
+        });
+        e.addEventFilter(MouseEvent.MOUSE_RELEASED,e->{
+            System.out.println("olaa");
+            if(BoardManager.moveBlock!=null){
+                BoardManager.moveBlock = null;
+                if(BoardManager.targetBlock!=null){
+                    BoardManager.attack(this, BoardManager.targetBlock);
+                }
+            }
+//            if(HandManager.selected==this){
+//                HandManager.arrangeCards();
+//                HandManager.selected = null;
+//                BoardManager.releaseCard(this);
+//            }
+        });
 
     }
 
