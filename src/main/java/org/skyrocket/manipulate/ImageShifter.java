@@ -1,10 +1,8 @@
-package Manipulate;
+package org.skyrocket.manipulate;
 
 import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.ImagePattern;
-
-import java.awt.*;
 
 public class ImageShifter {
     private Image i;
