@@ -1,5 +1,6 @@
 package org.skyrocket.hand;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import org.skyrocket.Card;
 import org.skyrocket.layer.LayerManager;
@@ -12,12 +13,18 @@ public final class HandManager {
     static List<Card> cards = new LinkedList<>();
 
     public static Card selected = null;
+    private static GraphicsContext gc;
 
     public static void init(){
         cards.add(new Card(Color.BLUEVIOLET));
         cards.add(new Card(Color.PINK));
         cards.add(new Card(Color.LIGHTGREEN));
         cards.add(new Card(Color.LIGHTYELLOW));
+
+        for (int i = 0; i < cards.size(); i++)
+        {
+            cards.get(i).render(gc);
+        }
 
         int icrLayer = 99;
         for(Card c:cards){

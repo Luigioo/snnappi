@@ -14,12 +14,13 @@ import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
 import org.skyrocket.layer.Srect;
 import org.skyrocket.mouse.Input;
+import org.skyrocket.render.renderManager;
 
 public class Card extends Sprite {
 
     final double width = 91;
     final double height = 175;
-    public Srect r = new Srect(0,0,width,height);;
+    public Srect r = new Srect(0,0,width,height);
 
     double selectPointX = -1;
     double selectPointY = -1;
@@ -81,4 +82,10 @@ public class Card extends Sprite {
     public void setY(double y){
         r.setY(y);
     }
+
+    public Srect getRect()
+    {
+        return r;
+    }
+
 }
