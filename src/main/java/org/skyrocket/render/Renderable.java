@@ -1,6 +1,6 @@
 package org.skyrocket.render;
 
-public interface renderable {
+public interface Renderable {
     public double getX();
     public double getY();
     public double getAngle();

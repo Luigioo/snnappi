@@ -5,18 +5,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.skyrocket.Card;
 
-public class renderManager{
+public class RenderManager {
 
     private Card c;
     private Image i;
     private GraphicsContext gc;
-    private renderable renderable;
+    private Renderable renderable;
 
-    public renderManager(GraphicsContext gc)
+    public RenderManager(GraphicsContext gc)
     {
         this.gc = gc;
         i = new Image("kuang.png");
-        renderable = new renderable() {
+        renderable = new Renderable() {
             @Override
             public double getX() {
                 return 400;
@@ -46,7 +46,7 @@ public class renderManager{
     }
 
 
-    public ImageView render(renderable r)
+    public ImageView render(Renderable r)
     {
         ImageView iv = new ImageView(i);
         iv.setX(r.getX() - 10);

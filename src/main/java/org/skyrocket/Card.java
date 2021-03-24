@@ -1,20 +1,13 @@
 package org.skyrocket;
 
-import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import org.skyrocket.board.BoardManager;
 import org.skyrocket.hand.HandManager;
-import org.skyrocket.layer.LayerManager;
 import org.skyrocket.layer.Srect;
 import org.skyrocket.mouse.Input;
-import org.skyrocket.render.renderable;
 
 public class Card extends Sprite {
 
