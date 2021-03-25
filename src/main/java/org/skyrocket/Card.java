@@ -53,6 +53,22 @@ public class Card extends Sprite {
     }
     public Card(Image image){
         r.setFill(new ImagePattern(image));
+        r.addEventFilter(MouseEvent.MOUSE_PRESSED,e->{
+            selectPointX = e.getX()-r.getX();
+            selectPointY = e.getY()-r.getY();
+            HandManager.selected = this;
+        });
+        r.addEventFilter(MouseEvent.MOUSE_DRAGGED,e->{
+            Input.setpos(e.getX(), e.getY());
+            setPos(e.getX()-selectPointX, e.getY()-selectPointY);
+        });
+        r.addEventFilter(MouseEvent.MOUSE_RELEASED,e->{
+            if(HandManager.selected==this){
+                HandManager.arrangeCards();
+                HandManager.selected = null;
+                BoardManager.releaseCard(this);
+            }
+        });
     }
 
 //    public void render(GraphicsContext gc) {

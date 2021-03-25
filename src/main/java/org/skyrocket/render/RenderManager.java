@@ -25,7 +25,6 @@ public class RenderManager {
     }
 
     private void rotate(GraphicsContext gc, double angle, double px, double py) {
-        System.out.println("Px is: " + px + " Py is: " + py);
         Rotate rtt = new Rotate(angle, px, py);
         gc.setTransform(r.getHeight()/i.getHeight(), rtt.getMyx(), rtt.getMxy(), r.getHeight()/i.getHeight(), rtt.getTx(), rtt.getTy());
     }

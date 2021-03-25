@@ -1,10 +1,12 @@
 package org.skyrocket.hand;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import org.skyrocket.Card;
 import org.skyrocket.layer.LayerManager;
 
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,9 +16,8 @@ public final class HandManager {
 
     public static Card selected = null;
     private static GraphicsContext gc;
-
     public static void init(){
-        cards.add(new Card(Color.BLUEVIOLET));
+        cards.add(new Card(new Image("Daoyan.jpg")));
         cards.add(new Card(Color.PINK));
         cards.add(new Card(Color.LIGHTGREEN));
         cards.add(new Card(Color.LIGHTYELLOW));
