@@ -22,6 +22,7 @@ public class RenderManager {
 
     public void renderSquare()
     {
+
         drawRotatedImage(gc, i, r.getAngle(), r.getX(), r.getY());
     }
     public void renderEllipse()

@@ -12,6 +12,7 @@ import org.skyrocket.board.BoardManager;
 import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
 import org.skyrocket.mouse.Input;
+import org.skyrocket.render.Simage;
 
 
 /**
@@ -48,28 +49,9 @@ public class App extends Application {
         BoardManager.init();
 
         LayerManager.reOrder();
-//        Card c = new Card();
-//        LayerManager.add(c.r);
-//        Card cb = new Card();
-//        LayerManager.add(cb.r);
-//        cb.r.setFill(Color.PINK);
-//        cb.setXpos(20);
-//        cb.r.layer = -1;
-//        LayerManager.reOrder();
-//        root.getChildren().sort((node1, node2)->{
-//            if(node1 instanceof Layered && node2 instanceof Layered){
-//                Layered l1 = (Layered)node1, l2 = (Layered)node2;
-//                return l1.getLayer()>l2.getLayer()?-1:1;
-//            }else if(node2 instanceof Layered){
-//                //only true when node1 is canvas
-//                //canvas is below all
-//                return 1;
-//            }else{
-//                return -1;
-//            }
-//        });
-//        root.getChildren().add(cb.r);
-//        root.getChildren().add(c.r);
+
+        Simage test = new Simage("Daoyan.jpg");
+
         AlbertooApp a = new AlbertooApp(gc, root);
 
         new AnimationTimer(){
@@ -87,7 +69,7 @@ public class App extends Application {
 //                double y = 232 + 128 * Math.sin(t);
 //
 //                gc.setFill(Color.BLACK);
-//
+                    gc.drawImage(test.blockImg, 0, 0);
 //                gc.fillRect(x-10,y-10,x+10,y+10);
                 a.update();
 
