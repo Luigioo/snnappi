@@ -1,8 +1,14 @@
 package org.skyrocket.board;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
+import javafx.util.Duration;
 import org.skyrocket.Card;
+
 import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.LayerManager;
 import org.skyrocket.mouse.Input;
@@ -54,7 +60,12 @@ public final class BoardManager {
     public static void releaseCard(Card c){
         if(selectedBlock!=null){
             selectedBlock.place(c);
+            selectedBlock = null;
             HandManager.consumeCard(c);
+        }else{
+            //go-back-to-hand animation
+//            Anime a = new Anime().add(new AniValue(c.r.xProperty(), 100));
+            c.returnHandAnimation();
         }
     }
 

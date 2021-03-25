@@ -39,7 +39,7 @@ public class AlbertooApp extends App{
 
         @Override
         public double getAngle() {
-            return 0;
+            return 240;
         }
 
         @Override

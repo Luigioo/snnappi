@@ -30,6 +30,7 @@ public class RenderManager {
     }
 
     private void drawRotatedImage(GraphicsContext gc, Image image, double angle, double tlpx, double tlpy) {
+
         gc.save(); // saves the current state on stack, including the current transform
         rotate(gc, angle, tlpx + image.getWidth() / 2, tlpy + image.getHeight() / 2);
         gc.drawImage(image, tlpx, tlpy);

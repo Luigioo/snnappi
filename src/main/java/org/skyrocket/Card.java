@@ -1,9 +1,14 @@
 package org.skyrocket;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.util.Duration;
 import org.skyrocket.board.BoardManager;
 import org.skyrocket.hand.HandManager;
 import org.skyrocket.layer.Srect;
@@ -17,6 +22,9 @@ public class Card extends Sprite {
 
     double selectPointX = -1;
     double selectPointY = -1;
+
+    public boolean onHand = true;
+
 
     public Card(Color c){
         r.setFill(c);
@@ -45,14 +53,26 @@ public class Card extends Sprite {
         });
         r.addEventFilter(MouseEvent.MOUSE_RELEASED,e->{
             if(HandManager.selected==this){
-                HandManager.arrangeCards();
-                HandManager.selected = null;
+
                 BoardManager.releaseCard(this);
+
+//                HandManager.arrangeCards();
+                HandManager.selected = null;
             }
         });
-    }
-    public Card(Image image){
-        r.setFill(new ImagePattern(image));
+        r.addEventFilter(MouseEvent.MOUSE_ENTERED,e->{
+            if(this.onHand){
+                //scale up
+                r.setScaleX(2);
+                r.setScaleY(2);
+            }
+        });
+        r.addEventFilter(MouseEvent.MOUSE_EXITED, e->{
+            if(onHand){
+                r.setScaleX(1);
+                r.setScaleY(1);
+            }
+        });
         r.addEventFilter(MouseEvent.MOUSE_PRESSED,e->{
             selectPointX = e.getX()-r.getX();
             selectPointY = e.getY()-r.getY();
@@ -80,16 +100,29 @@ public class Card extends Sprite {
         super.update();
     }
 
+    public void returnHandAnimation(){
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setAutoReverse(false);
+        KeyValue kv = new KeyValue(r.xProperty(), HandManager.getPosXCard(this), Interpolator.EASE_BOTH);
+        KeyValue kv2 = new KeyValue(r.yProperty(), HandManager.getPosYCard(this), Interpolator.EASE_BOTH);
+        KeyFrame kf = new KeyFrame(Duration.millis(200), kv, kv2);
+        timeline.getKeyFrames().add(kf);
+        timeline.setCycleCount(1);
+        timeline.play();
+        timeline.setOnFinished(e->{
+            System.out.println("finished");
+        });
+    }
+
+
     public void setPos(double x, double y){
         setX(x);
         setY(y);
     }
+    public void setX(double x){ r.setX(x); }
+    public void setY(double y){ r.setY(y); }
 
-    public void setX(double x){
-        r.setX(x);
-    }
-    public void setY(double y){
-        r.setY(y);
-    }
+
 
 }

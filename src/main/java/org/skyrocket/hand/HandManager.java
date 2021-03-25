@@ -13,23 +13,26 @@ import java.util.List;
 public final class HandManager {
 
     static List<Card> cards = new LinkedList<>();
-
     public static Card selected = null;
-    private static GraphicsContext gc;
+
+    final static double mid = 640;
+    final static double gap = 80;
+    final static double posy = 535;
     public static void init(){
-        cards.add(new Card(new Image("Daoyan.jpg")));
+        cards.add(new Card(Color.BLUE));
         cards.add(new Card(Color.PINK));
         cards.add(new Card(Color.LIGHTGREEN));
         cards.add(new Card(Color.LIGHTYELLOW));
 
-        for (int i = 0; i < cards.size(); i++)
-        {
-            cards.get(i).render(gc);
-        }
+//        for (int i = 0; i < cards.size(); i++)
+//        {
+//            cards.get(i).render(gc);
+//        }
 
         int icrLayer = 99;
         for(Card c:cards){
             c.r.setStroke(Color.GRAY);
+            c.r.setFill(Color.TRANSPARENT);
             c.r.setStrokeWidth(2);
             c.r.layer = icrLayer--;
             LayerManager.add(c.r);
@@ -38,18 +41,23 @@ public final class HandManager {
     }
 
     public static void arrangeCards(){
-        double mid = 640;
-        double gap = 80;
 
         double length = cards.size();
         double posnow = mid-gap*length/2.0;
         for(Card c:cards){
-            c.setY(535.0);
+            c.setY(posy);
             c.setX(posnow);
             posnow+=gap;
 
         }
+    }
 
+    public static double getPosXCard(Card c){
+        double i = cards.indexOf(c);
+        return (i-cards.size()/2.0)*gap+mid;
+    }
+    public static double getPosYCard(Card c){
+        return posy;
     }
 
     public static void add(Card c){
