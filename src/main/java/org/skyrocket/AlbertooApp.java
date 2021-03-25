@@ -25,43 +25,44 @@ public class AlbertooApp extends App{
     {
         friendMinion m1 = new friendMinion(gc, 1);
         friendMinion m2 = new friendMinion(gc, 2);
-        Renderable renderableSquare = new Renderable()
-        {
-        @Override
-        public double getX() {
-            return 300;
-        }
+        Renderable renderableSquare = new Renderable() {
+            @Override
+            public double getX() {
+                return 300;
+            }
 
-        @Override
-        public double getY() {
-            return 300;
-        }
+            @Override
+            public double getY() {
+                return 300;
+            }
 
-        @Override
-        public double getAngle() {
-            return 240;
-        }
+            @Override
+            public double getAngle() {
+                return 270;
+            }
 
-        @Override
-        public double getWidth() {
-            return 89.5;
-        }
+            @Override
+            public double getWidth() {
+                return 89.5;
+            }
 
-        @Override
-        public double getHeight() {
-            return 139;
-        }
+            @Override
+            public double getHeight() {
+                return 139;
+            }
 
-        @Override
+            @Override
             public double getCenterX(){return 0;}
 
             @Override
             public double getCenterY(){return 0;}
+
             @Override
-            public double getRadiousX(){return 0;}
+            public double getRadiusX(){return 0;}
+
             @Override
-        public double getRadiousY(){return 0;}
-    };
+            public double getRadiusY(){return 0;}
+        };
         Renderable renderableEllipse = new Renderable() {
             @Override
             public double getX() {
@@ -99,12 +100,12 @@ public class AlbertooApp extends App{
             }
 
             @Override
-            public double getRadiousX() {
+            public double getRadiusX() {
                 return 100;
             }
 
             @Override
-            public double getRadiousY() {
+            public double getRadiusY() {
                 return 200;
             }
         };

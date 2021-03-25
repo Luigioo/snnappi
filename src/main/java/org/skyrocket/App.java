@@ -69,7 +69,7 @@ public class App extends Application {
 //                double y = 232 + 128 * Math.sin(t);
 //
 //                gc.setFill(Color.BLACK);
-                    gc.drawImage(test.blockImg, 0, 0);
+                    //gc.drawImage(test.blockImg, 0, 0);
 //                gc.fillRect(x-10,y-10,x+10,y+10);
                 a.update();
 
