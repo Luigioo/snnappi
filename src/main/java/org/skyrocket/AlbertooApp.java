@@ -13,7 +13,7 @@ public class AlbertooApp extends App{
     private GraphicsContext gc;
     private Group root;
     private ArrayList<friendMinion> FMINION = new ArrayList<friendMinion>();
-    private RenderManager RM;
+    private RenderManager RM, RM2;
 
     public AlbertooApp(GraphicsContext gc, Group r)
     {
@@ -25,7 +25,7 @@ public class AlbertooApp extends App{
     {
         friendMinion m1 = new friendMinion(gc, 1);
         friendMinion m2 = new friendMinion(gc, 2);
-        Renderable renderable = new Renderable()
+        Renderable renderableSquare = new Renderable()
         {
         @Override
         public double getX() {
@@ -51,8 +51,65 @@ public class AlbertooApp extends App{
         public double getHeight() {
             return 139;
         }
+
+        @Override
+            public double getCenterX(){return 0;}
+
+            @Override
+            public double getCenterY(){return 0;}
+            @Override
+            public double getRadiousX(){return 0;}
+            @Override
+        public double getRadiousY(){return 0;}
     };
-        RM = new RenderManager(gc, renderable);
+        Renderable renderableEllipse = new Renderable() {
+            @Override
+            public double getX() {
+                return 0;
+            }
+
+            @Override
+            public double getY() {
+                return 0;
+            }
+
+            @Override
+            public double getAngle() {
+                return 45;
+            }
+
+            @Override
+            public double getWidth() {
+                return 0;
+            }
+
+            @Override
+            public double getHeight() {
+                return 0;
+            }
+
+            @Override
+            public double getCenterX() {
+                return 200;
+            }
+
+            @Override
+            public double getCenterY() {
+                return 200;
+            }
+
+            @Override
+            public double getRadiousX() {
+                return 100;
+            }
+
+            @Override
+            public double getRadiousY() {
+                return 200;
+            }
+        };
+        RM = new RenderManager(gc, renderableSquare);
+        RM2 = new RenderManager(gc, renderableEllipse);
         root.getChildren().add(m1.rectangle);
         root.getChildren().add(m2.rectangle);
 //        for(int i = 0; i < minion.getNumber(); i++)
@@ -63,6 +120,7 @@ public class AlbertooApp extends App{
 
     public void update()//this will be called in each second
     {
-        RM.render();
+        RM.renderSquare();
+        RM2.renderEllipse();
     }
 }

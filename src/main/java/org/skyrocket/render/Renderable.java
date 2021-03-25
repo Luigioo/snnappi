@@ -6,4 +6,8 @@ public interface Renderable {
     public double getAngle();
     public double getWidth();
     public double getHeight();
+    public double getCenterX();
+    public double getCenterY();
+    public double getRadiousX();
+    public double getRadiousY();
 }

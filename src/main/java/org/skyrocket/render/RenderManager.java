@@ -8,7 +8,7 @@ import org.skyrocket.Card;
 
 public class RenderManager {
 
-    private Image i;
+    private Image i, i2;
     private GraphicsContext gc;
     private Renderable r;
 
@@ -17,12 +17,15 @@ public class RenderManager {
         this.gc = gc;
         this.r = r;
         i = new Image("kuangg.png");
+        i2 = new Image("Daoyan.jpg");
     }
 
-    public void render()
+    public void renderSquare()
     {
         drawRotatedImage(gc, i, r.getAngle(), r.getX(), r.getY());
     }
+    public void renderEllipse()
+    {drawEllipse(gc, i2, r.getCenterX(), r.getCenterY(), r.getRadiousX(), r.getRadiousY());}
 
     private void rotate(GraphicsContext gc, double angle, double px, double py) {
         Rotate rtt = new Rotate(angle, px, py);
@@ -35,5 +38,9 @@ public class RenderManager {
         rotate(gc, angle, tlpx + image.getWidth() / 2, tlpy + image.getHeight() / 2);
         gc.drawImage(image, tlpx, tlpy);
         gc.restore(); // back to original state (before rotation)
+    }
+
+    public void drawEllipse(GraphicsContext gc, Image image, double getCenterX, double getCenterY, double getRadiusX, double getRadiusY) {
+
     }
 }
